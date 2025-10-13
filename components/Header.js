@@ -6,7 +6,7 @@ export default function Header() {
     <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8 border-b pb-4">
       <div className="flex items-center gap-4">
         <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100">
-          <Image src="/profile-placeholder.svg" alt="profile" width={160} height={160} />
+          <Image src="./profile-placeholder.svg" alt="profile" width={160} height={160} />
         </div>
         <div>
           <h1 className="text-2xl font-semibold text-accent">Arunkumar Dharmarajan</h1>

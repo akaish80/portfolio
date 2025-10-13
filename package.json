@@ -6,13 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
     "start": "next start",
-    "predeploy": "next build && next export -o out",
-    "deploy": "gh-pages -d out"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out -b gh-pages -r https://github.com/akaish80/portfolio.git"
   },
   "dependencies": {
-    "next": "13.4.10",
+    "next": "^13.5.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.10.1"

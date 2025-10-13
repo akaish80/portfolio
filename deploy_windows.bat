@@ -1,4 +1,4 @@
-\
+
     @echo off
     :: === Arunkumar Dharmarajan Portfolio Deployment Script (Windows) ===
 
@@ -17,7 +17,7 @@
     )
 
     echo 🌐 Creating GitHub repo (requires GitHub CLI login)...
-    gh repo create %GITHUB_USER%/%REPO_NAME% --public --source=. --remote=origin --push
+    :: gh repo create %GITHUB_USER%/%REPO_NAME% --public --source=. --remote=origin --push
 
     echo 📦 Installing dependencies...
     npm install
