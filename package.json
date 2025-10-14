@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -b gh-pages -r https://github.com/akaish80/portfolio.git"
+    "predeploy": "npm run build && echo \"\" > out/.nojekyll",
+    "deploy": "gh-pages -d out -b gh-pages -r https://github.com/akaish80/portfolio.git --dotfiles"
   },
   "dependencies": {
     "next": "^13.5.11",
