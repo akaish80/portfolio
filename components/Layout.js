@@ -4,16 +4,15 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>Arunkumar Dharmarajan — Senior Front-End Engineer</title>
-        <meta name="description" content="Lead Front-End Developer (React & Next.js) — portfolio of Arunkumar Dharmarajan" />
+        <title>Arunkumar Dharmarajan — Senior Frontend Engineer</title>
+        <meta name="description" content="Senior Frontend Engineer specializing in React, Next.js & Performance Optimization — Portfolio of Arunkumar Dharmarajan" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
+        <meta property="og:title" content="Arunkumar Dharmarajan — Senior Frontend Engineer" />
+        <meta property="og:description" content="Senior Frontend Engineer specializing in React, Next.js & Performance Optimization" />
+        <meta property="og:type" content="website" />
       </Head>
-      <main className="min-h-screen py-8 px-4">
-        <div className="container mx-auto">
-          {children}
-        </div>
-      </main>
+      {children}
     </>
   )
 }
