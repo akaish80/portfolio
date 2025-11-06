@@ -1,0 +1,99 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient - transparent/subtle -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34b7a7;stop-opacity:0.03" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.02" />
+    </linearGradient>
+    <linearGradient id="screenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34b7a7;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background - transparent -->
+  <rect width="800" height="600" fill="transparent"/>
+  
+  <!-- Floating code symbols -->
+  <text x="100" y="80" font-family="monospace" font-size="24" fill="#34b7a7" opacity="0.3">&lt;/&gt;</text>
+  <text x="650" y="150" font-family="monospace" font-size="20" fill="#667eea" opacity="0.3">{ }</text>
+  <text x="700" y="450" font-family="monospace" font-size="18" fill="#34b7a7" opacity="0.3">=&gt;</text>
+  <text x="80" y="500" font-family="monospace" font-size="22" fill="#667eea" opacity="0.3">( )</text>
+  
+  <!-- Desktop monitor -->
+  <g transform="translate(200, 150)">
+    <!-- Monitor stand -->
+    <rect x="160" y="330" width="80" height="15" rx="3" fill="#2d3748"/>
+    <rect x="130" y="345" width="140" height="8" rx="4" fill="#2d3748"/>
+    
+    <!-- Monitor frame -->
+    <rect x="20" y="30" width="360" height="300" rx="8" fill="#2d3748"/>
+    
+    <!-- Screen -->
+    <rect x="35" y="45" width="330" height="250" rx="4" fill="#1a202c"/>
+    <rect x="35" y="45" width="330" height="250" rx="4" fill="url(#screenGlow)"/>
+    
+    <!-- Code editor interface -->
+    <!-- Top bar -->
+    <rect x="35" y="45" width="330" height="25" rx="4" fill="#2d3748"/>
+    <circle cx="50" cy="57" r="4" fill="#fc5c65"/>
+    <circle cx="65" cy="57" r="4" fill="#fed330"/>
+    <circle cx="80" cy="57" r="4" fill="#26de81"/>
+    
+    <!-- Code lines -->
+    <rect x="50" y="90" width="60" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    <rect x="120" y="90" width="140" height="8" rx="2" fill="#34b7a7" opacity="0.5"/>
+    <rect x="270" y="90" width="70" height="8" rx="2" fill="#667eea" opacity="0.4"/>
+    
+    <rect x="50" y="110" width="40" height="8" rx="2" fill="#fc5c65" opacity="0.5"/>
+    <rect x="100" y="110" width="100" height="8" rx="2" fill="#34b7a7" opacity="0.6"/>
+    <rect x="210" y="110" width="60" height="8" rx="2" fill="#667eea" opacity="0.5"/>
+    <rect x="280" y="110" width="50" height="8" rx="2" fill="#fed330" opacity="0.4"/>
+    
+    <rect x="70" y="130" width="80" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    <rect x="160" y="130" width="120" height="8" rx="2" fill="#34b7a7" opacity="0.5"/>
+    
+    <rect x="70" y="150" width="50" height="8" rx="2" fill="#fc5c65" opacity="0.5"/>
+    <rect x="130" y="150" width="90" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    <rect x="230" y="150" width="70" height="8" rx="2" fill="#34b7a7" opacity="0.5"/>
+    
+    <rect x="50" y="170" width="70" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    <rect x="130" y="170" width="110" height="8" rx="2" fill="#34b7a7" opacity="0.5"/>
+    
+    <rect x="70" y="190" width="90" height="8" rx="2" fill="#fed330" opacity="0.5"/>
+    <rect x="170" y="190" width="80" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    
+    <rect x="50" y="210" width="60" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    <rect x="120" y="210" width="100" height="8" rx="2" fill="#34b7a7" opacity="0.5"/>
+    
+    <rect x="70" y="230" width="80" height="8" rx="2" fill="#fc5c65" opacity="0.5"/>
+    <rect x="160" y="230" width="90" height="8" rx="2" fill="#667eea" opacity="0.6"/>
+    
+    <!-- Cursor blink -->
+    <rect x="340" y="90" width="2" height="10" fill="#34b7a7">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  
+  <!-- Floating elements - React logo inspired -->
+  <g transform="translate(550, 250)" opacity="0.4">
+    <circle cx="0" cy="0" r="30" stroke="#61dafb" stroke-width="3" fill="none"/>
+    <ellipse cx="0" cy="0" rx="60" ry="20" stroke="#61dafb" stroke-width="3" fill="none" transform="rotate(60)"/>
+    <ellipse cx="0" cy="0" rx="60" ry="20" stroke="#61dafb" stroke-width="3" fill="none" transform="rotate(-60)"/>
+    <circle cx="0" cy="0" r="6" fill="#61dafb"/>
+  </g>
+  
+  <!-- Decorative dots pattern -->
+  <g opacity="0.2">
+    <circle cx="150" cy="200" r="3" fill="#34b7a7"/>
+    <circle cx="170" cy="220" r="2" fill="#667eea"/>
+    <circle cx="650" cy="300" r="4" fill="#34b7a7"/>
+    <circle cx="680" cy="280" r="2" fill="#667eea"/>
+    <circle cx="120" cy="400" r="3" fill="#667eea"/>
+    <circle cx="700" cy="500" r="3" fill="#34b7a7"/>
+  </g>
+  
+  <!-- Abstract shapes -->
+  <path d="M 50 250 Q 100 200 150 250" stroke="#34b7a7" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M 650 100 Q 700 80 750 100" stroke="#667eea" stroke-width="2" fill="none" opacity="0.2"/>
+</svg>
