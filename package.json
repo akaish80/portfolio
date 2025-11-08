@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-     "prebuild": "git rev-parse --short HEAD > src/commit-hash.txt",
-     "dev": "vite",
-     "build": "vite build",
-     "preview": "vite preview",
+    "prebuild": "git rev-parse --short HEAD > src/commit-hash.txt",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
