@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Resume from './pages/Resume'
@@ -12,9 +12,6 @@ import { useAOS } from './hooks/useAOS'
 import { usePreloader } from './hooks/usePreloader'
 
 const App: React.FC = () => {
-  const location = useLocation()
-  const isHomePage = location.pathname === '/'
-
   // Initialize hooks for global behaviors
   useScrolled()
   useAOS()
