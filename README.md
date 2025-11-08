@@ -163,3 +163,4 @@ Notes and next steps:
 - If your repository will be served from a subpath (e.g. `https://<user>.github.io/<repo>/`), the Vite config `base: './'` helps make assets relative. If you prefer an absolute base (e.g. `/my-repo/`), update `vite.config.ts`.
 - The app currently re-uses your existing CSS files in `/css/` and images in `/img/`. You can migrate and import them into `src/` if you prefer bundling.
 - If your repo's default branch is not `main`, update the workflow trigger.
+
