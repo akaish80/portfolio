@@ -22,7 +22,9 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --omit=optional
+        run: npm install --no-optional
+        env:
+          npm_config_optional: false
 
       - name: Generate commit hash
         run: npm run prebuild
