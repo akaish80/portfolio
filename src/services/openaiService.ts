@@ -1,105 +1,6 @@
-import OpenAI from 'openai';
-import { ARUN_RESUME_DATA } from '../data/resumeData';
-
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-
-if (!OPENAI_API_KEY) {
-  console.warn('OpenAI API key not found. Please set VITE_OPENAI_API_KEY in your .env file.');
-}
-
-const openai = OPENAI_API_KEY
-  ? new OpenAI({
-      apiKey: OPENAI_API_KEY,
-      dangerouslyAllowBrowser: true, // Note: For production, use a backend proxy
-    })
-  : null;
-
-// Convert resume data to a context string for the AI
-const getResumeContext = (): string => {
-  const { name, title, location, contact, summary, skills, experience, education, additional_details, ai_innovation_projects } =
-    ARUN_RESUME_DATA;
-
-  return `
-You are an AI assistant for ${name}'s professional portfolio. Answer questions about his background, skills, and experience.
-
-# Professional Profile
-Name: ${name}
-Title: ${title}
-Location: ${location}
-Email: ${contact.email}
-Phone: ${contact.phone}
-Portfolio: ${contact.links.Portfolio}
-LinkedIn: ${contact.links.LinkedIn}
-GitHub: ${contact.links.Git}
-
-# Summary
-${summary}
-
-# Technical Skills
-**Frontend:** ${skills.frontend.join(', ')}
-**Backend:** ${skills.backend.join(', ')}
-**Build & Tooling:** ${skills.build_and_tooling.join(', ')}
-**Monitoring:** ${skills.monitoring_platforms.join(', ')}
-**DevOps:** ${skills.devops.join(', ')}
-**Cloud & Containers:** ${skills.cloud_containers.join(', ')}
-**AI/ML:** ${skills.ai_ml.join(', ')}
-
-# Professional Experience
-
-${experience
-  .map(
-    (exp) => `
-## ${exp.role} at ${exp.company}
-Duration: ${exp.duration}
-Location: ${exp.location}
-
-Project Highlights:
-${exp.project_highlights.map((h) => `- ${h}`).join('\n')}
-
-Key Contributions:
-${exp.key_contributions.map((c) => `- ${c}`).join('\n')}
-
-Tech Stack: ${exp.tech_stack.join(', ')}
-`
-  )
-  .join('\n')}
-
-# Education
-${education.degree}
-${education.university}
-${education.duration}
-
-# AI Innovation Projects
-
-${ai_innovation_projects
-  .map(
-    (proj) => `
-## ${proj.name}
-${proj.description}
-
-Highlights:
-${proj.highlights.map((h) => `- ${h}`).join('\n')}
-
-Tech Stack: ${proj.tech_stack.join(', ')}
-`
-  )
-  .join('\n')}
-
-# Additional Details
-- ${additional_details.role_preferences}
-- ${additional_details.availability}
-- ${additional_details.current_location}
-
-When answering questions:
-1. Be friendly, professional, and concise
-2. Highlight relevant experience and skills
-3. Provide specific examples from his work when applicable
-4. If asked about contact information, provide the email and LinkedIn
-5. If you don't know something, say so honestly
-`;
-};
-
-const SYSTEM_PROMPT = getResumeContext();
+// Use Node.js Express server endpoint for secure API calls
+// In production, this should point to your deployed backend (e.g., Render, Railway, etc.)
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT || 'http://localhost:3001/api/chat';
 
 // Rate limiting
 let lastRequestTime = 0;
@@ -143,37 +44,31 @@ export const openaiService = {
     if (now - lastRequestTime < MIN_REQUEST_INTERVAL) {
       return "Please wait a moment before sending another message. To avoid rate limits, I'm spacing out requests.";
     }
-    
-    if (!openai) {
-      return getFallbackResponse(userMessage);
-    }
 
     try {
       lastRequestTime = now;
       
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: userMessage },
-        ],
-        temperature: 0.7,
-        max_tokens: 400, // Reduced to save quota
+      // Call secure backend API (API key is never exposed to browser)
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage }),
       });
 
-      return completion.choices[0]?.message?.content || 'I apologize, but I could not generate a response.';
-    } catch (error: any) {
-      console.error('OpenAI API Error:', error);
-      
-      if (error.status === 401) {
-        return "⚠️ API authentication error. Switching to fallback mode...\n\n" + getFallbackResponse(userMessage);
-      } else if (error.status === 429) {
-        return "⚠️ Rate limit reached. Using fallback responses...\n\n" + getFallbackResponse(userMessage);
-      } else if (error.status === 403) {
-        return "⚠️ API access issue (quota or billing). Using fallback mode...\n\n" + getFallbackResponse(userMessage);
-      } else {
+      const data = await response.json();
+
+      // If backend returns fallback flag or error, use fallback
+      if (data.fallback || data.error) {
+        console.warn('Backend API issue:', data.error);
         return "⚠️ AI service temporarily unavailable. Here's what I can tell you:\n\n" + getFallbackResponse(userMessage);
       }
+
+      return data.response || 'I apologize, but I could not generate a response.';
+    } catch (error: any) {
+      console.error('API Error:', error);
+      return "⚠️ Unable to connect to AI service. Here's what I can tell you:\n\n" + getFallbackResponse(userMessage);
     }
   },
 };

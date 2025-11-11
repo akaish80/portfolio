@@ -14,6 +14,8 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
+# Keep .env.production.example for reference
 
 # OS generated files
 .DS_Store
@@ -59,3 +61,5 @@ dist/
 
 # Yarn Integrity file
 .yarn-integrity
+# Local Netlify folder
+.netlify

@@ -6,7 +6,9 @@ This repository is a Vite-based React TypeScript conversion of the original stat
 
 - ⚡ Vite for fast development and optimized builds
 - ⚛️ React 18 with TypeScript
-- 🎨 Preserves original CSS styling (Bootstrap, AOS, etc.)
+- 🤖 AI-Powered Chatbot using OpenAI GPT API
+- 🔒 Secure backend with Node.js + Express
+- 🎨 SCSS styling with modern CSS features
 - 🎣 Custom React hooks replacing vanilla JS behaviors
 - 📱 Mobile-responsive navigation
 - 🚀 Automated GitHub Pages deployment via Actions
@@ -14,19 +16,40 @@ This repository is a Vite-based React TypeScript conversion of the original stat
 
 ## Quick Start
 
-Install dependencies:
+### Development Setup
+
+1. Install dependencies:
 ```powershell
 npm install
 ```
 
-Run development server:
+2. Create `.env` file with your OpenAI API key:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+3. Start backend server (Terminal 1):
+```powershell
+npm run dev:server
+```
+
+4. Start frontend (Terminal 2):
 ```powershell
 npm run dev
 ```
 
-Build for production:
+5. Open http://localhost:5173/portfolio/ and test the chatbot!
+
+### Production Build
+
+Build frontend:
 ```powershell
 npm run build
+```
+
+Build backend:
+```powershell
+npm run build:server
 ```
 
 Preview production build:
@@ -123,44 +146,79 @@ To use clean URLs with `BrowserRouter`, you'll need server-side rewrite configur
 - GLightbox
 - Swiper
 
+## AI Chatbot
+
+This portfolio includes an intelligent chatbot powered by OpenAI GPT that can answer questions about Arun's:
+- Professional experience and achievements
+- Technical skills and expertise
+- Projects and contributions
+- Education and background
+- Contact information
+
+**Architecture:**
+- Frontend: React components with real-time chat UI
+- Backend: Node.js + Express server (secure API proxy)
+- AI: OpenAI GPT-3.5-turbo with custom resume context
+
+**Security:**
+- API keys stored server-side only
+- CORS configured for production domain
+- Rate limiting to prevent abuse
+- Fallback responses when API unavailable
+
+See [SERVER_SETUP.md](./SERVER_SETUP.md) for backend development details.  
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for production deployment guide.
+
+## Deployment
+
+### Frontend (GitHub Pages)
+Automatically deployed via GitHub Actions when you push to `main`.  
+Live at: https://akaish80.github.io/portfolio/
+
+### Backend (Render.com / Railway)
+Deploy the Node.js server separately:
+1. Create account on Render.com or Railway.app
+2. Connect GitHub repository
+3. Set `OPENAI_API_KEY` environment variable
+4. Deploy with `npm run start:server`
+
+**Full deployment guide:** [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+## Project Structure (Updated)
+
+```
+portfolio/
+├── src/
+│   ├── assets/css/          # SCSS files
+│   ├── components/          # React components
+│   │   ├── ChatButton.tsx   # Chatbot trigger button
+│   │   └── ChatOverlay.tsx  # Chat interface
+│   ├── data/
+│   │   └── resumeData.ts    # Resume data for AI context
+│   ├── hooks/               # Custom React hooks
+│   ├── pages/               # Route pages
+│   ├── services/
+│   │   └── openaiService.ts # API communication
+│   ├── App.tsx              # Main app with routing
+│   └── main.tsx             # React entry point
+├── server/
+│   └── index.ts             # Express backend server
+├── public/                  # Static assets
+├── .github/workflows/       # GitHub Actions deployment
+├── DEPLOYMENT.md            # Production deployment guide
+└── SERVER_SETUP.md          # Backend setup instructions
+```
+
+## Scripts
+
+- `npm run dev` - Start Vite frontend dev server
+- `npm run dev:server` - Start Express backend with hot reload
+- `npm run build` - Build frontend for production
+- `npm run build:server` - Compile TypeScript backend
+- `npm run start:server` - Run production backend server
+- `npm run preview` - Preview production frontend build
+
 ## License
 
 Template based on [Kelly](https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/) by BootstrapMade
-# Arun Portfolio — Vite + React + TypeScript
-
-This repository has been adapted so the existing static portfolio site can be built with Vite and deployed to GitHub Pages.
-
-What I added:
-- Vite config + React entry files under `src/`
-- TypeScript config
-- GitHub Actions workflow to build and publish `dist/` to the `gh-pages` branch on every push to `main`
-
-Quick start (local):
-
-1. Install dependencies
-
-```powershell
-npm install
-```
-
-2. Run dev server
-
-```powershell
-npm run dev
-```
-
-3. Build for production
-
-```powershell
-npm run build
-```
-
-GitHub Pages deploy (automatic):
-
-The workflow `.github/workflows/deploy.yml` will build the site and publish the `dist/` directory to the `gh-pages` branch whenever you push to `main`.
-
-Notes and next steps:
-- If your repository will be served from a subpath (e.g. `https://<user>.github.io/<repo>/`), the Vite config `base: './'` helps make assets relative. If you prefer an absolute base (e.g. `/my-repo/`), update `vite.config.ts`.
-- The app currently re-uses your existing CSS files in `/css/` and images in `/img/`. You can migrate and import them into `src/` if you prefer bundling.
-- If your repo's default branch is not `main`, update the workflow trigger.
 

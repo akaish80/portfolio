@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: portfolio-chat-backend
+    env: node
+    buildCommand: npm install && npm run build:server
+    startCommand: npm run start:server
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /api/health
