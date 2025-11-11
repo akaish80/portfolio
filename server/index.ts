@@ -211,7 +211,7 @@ app.post('/api/chat', async (req, res) => {
       }),
     });
 
-    const data = await response.json();
+    const data: any = await response.json();
 
     if (!response.ok) {
       console.error('OpenAI API Error:', data);
